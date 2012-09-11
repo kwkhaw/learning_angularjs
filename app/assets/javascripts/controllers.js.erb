@@ -17,3 +17,29 @@ function GalleriesCtrl(Galleries, Photographers) {
 	this.photographer = Photographers.get({ photographer_id: this.params.photographer_id });
 	this.galleries = Galleries.index({ photographer_id: this.params.photographer_id });
 }
+
+function PhotosCtrl(Photos, Galleries, Photographers, SelectedPhotos) {
+	var self = this;
+	
+	self.photographer = Photographers.get({ photographer_id: this.params.photographer_id });
+	self.gallery = Galleries.get({ photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id });
+	self.photos = Photos.index({ photographer_id: this.params.photographer_id, gallery_id: this.params.gallery_id });
+	self.selected_photos = SelectedPhotos.index();
+	
+	self.selectPhoto = function(photo) {
+		var selected_photo = New SelectedPhotos({ selected_photo: { photo_id: photo_id } });
+		selected_photo.$create(function() {
+			self.selected_photos.push(selected_photo);
+		});
+	}
+	
+	self.deleteSelectedPhoto = function(selected_photo) {
+		angular.Array.remove(self.selected_photos, selected_photo);
+		selected_photo.$destroy({ selected_photo_id: selected_photo.id });
+	}
+	
+	self.saveSelectedPhoto = function(selected_photo) {
+		selected_photo.$update({ selected_photo_id: selected_photo.id });
+		$('input').blur();
+	}
+}
