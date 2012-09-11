@@ -1,4 +1,5 @@
 class Photo < ActiveRecord::Base
-  belongs_to :gallery
-  attr_accessible :title
+  attr_accessible :title, :gallery_id
+  
+  belongs_to :gallery  
 end

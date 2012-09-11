@@ -19,6 +19,11 @@ group :development, :test do
   gem 'jasminerice'
 end
 
+group :test do
+  gem 'capybara'
+  gem 'factory_girl_rails'
+end
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
