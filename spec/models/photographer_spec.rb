@@ -1,5 +1,14 @@
 require 'spec_helper'
 
 describe Photographer do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+    @photographer = Photographer.new(:name => "Ricardo Pacheco")
+  end
+  
+  subject { @photographer }
+  
+  it { should respond_to(:name) }
+  it { should respond_to(:galleries) }
+  
+  it { should be_valid }
 end
