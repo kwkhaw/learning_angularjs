@@ -1,0 +1,19 @@
+$route.when('/photographers',
+	{template: '<%= asset_path("photographers.html") %>', controller: PhotographersCtrl});
+	
+$route.when('/photographers/:photographer_id/galleries',
+	{template: '<%= asset_path("galleries.html") %>', controller: GalleriesCtrl});
+
+$route.when('/photographers/:photographer_id/galleries/:gallery_id/photos',
+	{template: '<%= asset_path("photos.html") %>', controller: PhotosCtrl});
+
+$route.otherwise({redirectTo: '/photographers'});
+
+$route.onChange(function() {
+	this.params = $route.current.params;
+});
+
+function GalleriesCtrl(Galleries, Photographers) {
+	this.photographer = Photographers.get({ photographer_id: this.params.photographer_id });
+	this.galleries = Galleries.index({ photographer_id: this.params.photographer_id });
+}
