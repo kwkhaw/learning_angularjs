@@ -1,4 +1,19 @@
 LearningAngularjs::Application.routes.draw do
+  
+  resources :photographers do
+    resources :galleries do
+      resources :photos
+    end
+  end
+
+  resources :selected_photos
+
+  root :to => 'photographers#index'
+    
+  if ['development', 'test'].include? Rails.env
+    mount Jasminerice::Engine => '/jasmine'
+  end
+    
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
