@@ -1,4 +1,6 @@
 class Gallery < ActiveRecord::Base
+  attr_accessible :title, :photographer_id
+  
   belongs_to :photographer
-  attr_accessible :title
+  has_many :photos
 end
