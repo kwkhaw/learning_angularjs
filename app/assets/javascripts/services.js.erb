@@ -17,9 +17,8 @@ angular.service('Photos', function($resource) {
 
 angular.service('SelectedPhotos', function($resource) {
  return $resource('selected_photos/:selected_photo_id', {},
-                    																		{ 
-																													'create': { method: 'POST' },
-                      																		'index': { method: 'GET', isArray: true },
-                      																		'update': { method: 'PUT' },
-                      																		'destroy': { method: 'DELETE' }});
+                    { 'create': { method: 'POST' },
+                      'index': { method: 'GET', isArray: true },
+                      'update': { method: 'PUT' },
+                      'destroy': { method: 'DELETE' }});
 });
