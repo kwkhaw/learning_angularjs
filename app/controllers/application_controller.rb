@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :intercept_html_requests
   
-  layout nil
+  layout "dynamic"
   
   private
   
